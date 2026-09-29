@@ -76,9 +76,3 @@ JWT_SECRET_KEY=use-a-long-random-value
 2. Add SentenceTransformers + FAISS in a `rag/` package for large knowledge sets; the current small corpus uses deterministic lexical retrieval so the app always runs locally.
 3. Implement a `GeminiProvider` that receives only retrieved context plus profile summary, and preserve the current response as an API-failure fallback.
 4. Replace the minimal password demo store with bcrypt hashing before production.
-
-## Screenshots
-
-Add screenshots here after running the app: landing hero, dashboard, roadmap, and interview feedback are the key presentation captures.
-=======
-# Career_IQ
