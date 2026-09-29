@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AI Career & Placement Assistant · CareerIQ
 
 **Analyze. Match. Improve. Succeed.** A presentation-ready full-stack placement companion that turns a resume into skills intelligence, role matches, actionable gaps, a learning journey, AI-grounded career advice, and mock-interview feedback.
@@ -83,4 +82,3 @@ JWT_SECRET_KEY=use-a-long-random-value
 Add screenshots here after running the app: landing hero, dashboard, roadmap, and interview feedback are the key presentation captures.
 =======
 # Career_IQ
->>>>>>> d5d1db21617ccc71032757da4e8c8f658a8aebac
