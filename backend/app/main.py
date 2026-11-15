@@ -7,7 +7,8 @@ import fitz, jwt, io, os
 from .data import ROLES
 from .services import token, profile_from_text, match, roadmap, guidance, evaluate
 from .rag import rag
-app=FastAPI(title='Career IQ API',version='1.0'); app.add_middleware(CORSMiddleware,allow_origins=['http://localhost:5173','http://127.0.0.1:5173'],allow_credentials=True,allow_methods=['*'],allow_headers=['*']); security=HTTPBearer(); users={}; profiles={}; progress={}
+origins=['http://localhost:5173','http://127.0.0.1:5173']+([os.getenv('FRONTEND_ORIGIN')] if os.getenv('FRONTEND_ORIGIN') else [])
+app=FastAPI(title='Career IQ API',version='1.0'); app.add_middleware(CORSMiddleware,allow_origins=origins,allow_credentials=True,allow_methods=['*'],allow_headers=['*']); security=HTTPBearer(); users={}; profiles={}; progress={}
 def current(c:HTTPAuthorizationCredentials=Depends(security)):
  try:return jwt.decode(c.credentials,os.getenv('JWT_SECRET_KEY','dev-career-iq-secret'),algorithms=['HS256'])['sub']
  except: raise HTTPException(401,'Invalid or expired session')
