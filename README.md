@@ -1,42 +1,54 @@
-# AI Career & Placement Assistant · CareerIQ
+# 🚀 AI Career & Placement Assistant — CareerIQ
 
-**Analyze. Match. Improve. Succeed.** A presentation-ready full-stack placement companion that turns a resume into skills intelligence, role matches, actionable gaps, a learning journey, AI-grounded career advice, and mock-interview feedback.
+### **Analyze. Match. Improve. Succeed.**
 
-## What works
+CareerIQ is a full-stack AI-powered placement assistant that transforms your resume into **skills intelligence, job matches, skill gaps, learning roadmaps, career guidance, and mock-interview feedback.**
 
-- PDF, DOCX, and TXT resume upload with PyMuPDF/python-docx text extraction
-- Pattern-driven NLP skill extraction across nine professional categories
-- Resume completeness scoring and contextual improvement suggestions
-- TF-IDF + cosine-similarity job ranking against seven seeded, realistic roles
-- Skill-gap analysis built directly from required role skills
-- Personalized, completion-tracked roadmap
-- Mock interview question and scored feedback (relevance, depth, communication, completeness)
-- Floating career mentor with retrieval-grounded fallback guidance
-- JWT-protected REST API and responsive animated React interface
+## ✨ Features
 
-## Architecture
+* 📄 **Resume Analysis** — PDF, DOCX & TXT extraction
+* 🧠 **NLP Skill Extraction** — identifies skills across 9 categories
+* 🎯 **Job Matching** — TF-IDF + Cosine Similarity
+* 🔍 **Skill Gap Analysis** — matched vs. missing skills
+* 🗺️ **Learning Roadmap** — personalized & progress-tracked
+* 🤖 **AI Career Mentor** — retrieval-grounded career guidance
+* 🎤 **Mock Interviews** — question generation & response evaluation
+* 🔐 **JWT Authentication** — protected REST APIs
+* 📊 **Career Analytics** — career-readiness insights
+
+## 🏗️ Architecture
 
 ```text
-React/Vite UI → FastAPI REST API → NLP extraction + TF-IDF matcher
-                                    ↘ seeded role/knowledge corpus → grounded mentor
+React/Vite
+    ↓
+FastAPI REST API
+    ↓
+NLP + TF-IDF Matching
+    ↓
+Role & Knowledge Corpus
+    ↓
+Career Insights
 ```
 
-The app intentionally has a reliable offline mode: role data, retrieval corpus, user session data, and deterministic guidance work without keys or services. This makes it ideal for a demo. The service layer is isolated in `backend/app/services.py`; replace the mentor fallback with Gemini and persistence dictionaries with MongoDB repositories for production deployment.
+## 🛠️ Tech Stack
 
-## Run locally
+**Frontend:** React, Vite
+**Backend:** Python, FastAPI
+**AI/NLP:** NLP, TF-IDF, Cosine Similarity
+**Documents:** PyMuPDF, python-docx
+**Auth:** JWT
+**Planned:** Gemini, SentenceTransformers, FAISS, MongoDB
 
-Prerequisites: Python 3.10+ and Node 20+.
+## 🚀 Run Locally
 
 ```powershell
 cd backend
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-$env:JWT_SECRET_KEY="a-long-random-development-secret"
+$env:JWT_SECRET_KEY="your-secret"
 uvicorn app.main:app --reload --port 8000
 ```
-
-In a second terminal:
 
 ```powershell
 cd frontend
@@ -44,39 +56,26 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173`. Create an account, then upload a resume. Use the dashboard, role matches, roadmap, interview, and mentor in that order for the strongest demo story.
+Open **http://localhost:5173**
 
-## Environment
+## 🔄 Workflow
 
-Copy `.env.example` to `.env` and supply secrets before deployment:
-
-```env
-MONGODB_URL=mongodb://localhost:27017/career_iq
-GEMINI_API_KEY=your_key
-JWT_SECRET_KEY=use-a-long-random-value
+```text
+Resume
+  ↓
+Skill Analysis
+  ↓
+Role Matching
+  ↓
+Skill Gaps
+  ↓
+Learning Roadmap
+  ↓
+Mock Interview
+  ↓
+Career Mentor
 ```
 
-## API map
+### 🎯 Goal
 
-| Endpoint | Purpose |
-| --- | --- |
-| `POST /auth/signup`, `/auth/login` | account and JWT session |
-| `POST /resume/analyze` | upload + extraction + scoring |
-| `GET /jobs`, `/jobs/matches` | seeded roles and personalized ranks |
-| `GET /skills/gap/{role_id}` | matched and missing skills |
-| `GET /roadmap/{role_id}` | generated journey |
-| `POST /roadmap/progress` | persist completion state |
-| `POST /interview/start`, `/interview/evaluate` | mock interview flow |
-| `POST /chat` | grounded mentor response |
-| `GET /analytics` | career-readiness summary |
-
-## Production extension points
-
-1. Add `motor`/Mongo repositories for users, resumes, roadmaps, sessions, and chats.
-2. Add SentenceTransformers + FAISS in a `rag/` package for large knowledge sets; the current small corpus uses deterministic lexical retrieval so the app always runs locally.
-3. Implement a `GeminiProvider` that receives only retrieved context plus profile summary, and preserve the current response as an API-failure fallback.
-4. Replace the minimal password demo store with bcrypt hashing before production.
-
-## Screenshots
-
-Add screenshots here after running the app: landing hero, dashboard, roadmap, and interview feedback are the key presentation captures.
+**Turn a static resume into an interactive, personalized career journey.**
