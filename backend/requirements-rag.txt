@@ -1,0 +1,5 @@
+# Optional semantic-vector RAG upgrade. The application falls back to lexical
+# retrieval when these heavyweight packages are not installed.
+-r requirements.txt
+sentence-transformers>=3.0
+faiss-cpu>=1.8
